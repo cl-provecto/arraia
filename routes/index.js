@@ -194,5 +194,85 @@ router.post('/addm', async (req, res) => {
   }
 });
 
+router.get('/resultado-categoria-fundamental', (req, res) => {
+  const querycf = `
+  SELECT 
+    e.nome_equipe AS equipe,
+    e.tema_equipe AS tema,
+    a.jurado,
+    c.nome_categoria AS categoria,
+    a.notas[1] AS nota_1,
+    a.notas[2] AS nota_2,
+    a.notas[3] AS nota_3,
+    a.notas[4] AS nota_4,
+    a.notas[5] AS nota_5,
+    a.notas[6] AS nota_6,
+    CASE WHEN array_length(a.notas, 1) >= 7 THEN a.notas[7] ELSE NULL END AS nota_7,
+    a.notas[1] + a.notas[2] + a.notas[3] + a.notas[4] + a.notas[5] + a.notas[6] + CASE WHEN array_length(a.notas, 1) >= 7 THEN a.notas[7] ELSE 0 END AS soma_total
+  FROM 
+      avaliacoes a
+  JOIN 
+      equipes e ON a.equipe_id = e.equipe_id
+  JOIN 
+      categorias c ON a.categoria_id = c.categoria_id
+  ORDER BY equipe ASC, jurado ASC;
+  `
+  pool.query(querycf, [], (erro, resultado) => {
+    if(erro) {
+      res.status(500).send(erro)
+    }
+    const categorias = {};
+    resultado.rows.forEach((item) => {
+      if (!categorias[item.categoria]) {
+        categorias[item.categoria] = [];
+      }
+      categorias[item.categoria].push(item);
+      //console.log(categorias)
+    });
+
+    res.render('resultado-categoria-fundamental', { categorias })
+  })
+});
+
+router.get('/resultado-categoria-medio', (req, res) => {
+  const querycm = `
+  SELECT 
+    e.nome_equipe AS equipe,
+    e.tema_equipe AS tema,
+    a.jurado,
+    c.nome_categoria AS categoria,
+    a.notas[1] AS nota_1,
+    a.notas[2] AS nota_2,
+    a.notas[3] AS nota_3,
+    a.notas[4] AS nota_4,
+    a.notas[5] AS nota_5,
+    a.notas[6] AS nota_6,
+    CASE WHEN array_length(a.notas, 1) >= 7 THEN a.notas[7] ELSE NULL END AS nota_7,
+    a.notas[1] + a.notas[2] + a.notas[3] + a.notas[4] + a.notas[5] + a.notas[6] + CASE WHEN array_length(a.notas, 1) >= 7 THEN a.notas[7] ELSE 0 END AS soma_total
+  FROM 
+    avaliacoes_m a
+  JOIN 
+    equipes e ON a.equipe_id = e.equipe_id
+  JOIN 
+    categorias_m c ON a.categoriam_id = c.categoriam_id
+  ORDER BY equipe ASC, jurado ASC;
+  `
+  pool.query(querycm, [], (erro, resultado) => {
+    if(erro) {
+      res.status(500).send(erro)
+    }
+    const categorias = {};
+    resultado.rows.forEach((item) => {
+      if (!categorias[item.categoria]) {
+        categorias[item.categoria] = [];
+      }
+      categorias[item.categoria].push(item);
+      //console.log(categorias)
+    });
+
+    res.render('resultado-categoria-medio', { categorias })
+  })
+});
+
 
 module.exports = router;
