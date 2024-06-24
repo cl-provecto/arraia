@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ARRAIÁ PROVECTO</title>
+    <link rel="icon" type="image/x-icon" href="/images/fav_sj.ico">
+    <link rel="icon" type="image/png" href="/images/fav_sj.png"/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+      html, body {
+          height: 100%;
+          margin: 0;
+          overflow: hidden;
+      }
+
+      body {
+          background-image: url('/images/wall_sj.jpg'); /* Substitua pelo caminho da sua imagem */
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-position: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          color: white;
+      }
+
+      .custom-div {
+            width: 100%;
+            height: 100%;
+            padding: 2.5rem; /* 40px */
+            background-color: white;
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+       }
+    </style>
+  </head>
+  <body>
+    <div class="custom-div">
+
+      <h1><span class="badge text-bg-primary">RESULTADO POR CATEGORIA - FUNDAMENTAL</span></h1>
+      <br>
+      <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="pills-quadrilha-tab" data-bs-toggle="pill" data-bs-target="#pills-quadrilha" type="button" role="tab" aria-controls="pills-quadrilha" aria-selected="true"><strong>QUADRILHA</strong></button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-noivos-tab" data-bs-toggle="pill" data-bs-target="#pills-noivos" type="button" role="tab" aria-controls="pills-noivos" aria-selected="false"><strong>NOIVOS</strong></button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-casal-destaque-tab" data-bs-toggle="pill" data-bs-target="#pills-casal-destaque" type="button" role="tab" aria-controls="pills-casal-destaque" aria-selected="false"><strong>CASAL DESTAQUE</strong></button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-rainha-tab" data-bs-toggle="pill" data-bs-target="#pills-rainha" type="button" role="tab" aria-controls="pills-rainha" aria-selected="false"><strong>RAINHA</strong></button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-rei-tab" data-bs-toggle="pill" data-bs-target="#pills-rei" type="button" role="tab" aria-controls="pills-rei" aria-selected="false"><strong>REI</strong></button>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-quadrilha" role="tabpanel" aria-labelledby="pills-quadrilha-tab" tabindex="0">
+          <table class="table table-hover table-striped table-bordered border-primary">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>EQUIPE</th>
+                    <th>TEMA</th>
+                    <th>JURADO</th>
+                    <th>COREOGRAFIA</th>
+                    <th>HARMONIA</th>
+                    <th>ALINHAMENTO</th>
+                    <th>EVOLUÇÃO</th>
+                    <th>ANIMAÇÃO</th>
+                    <th>CASAMENTO</th>
+                    <th>FIGURINO</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider text-center fs-5">
+                <% categorias['Quadrilha'].forEach(function(item) { %>
+                <tr>
+                  <th scope="row"><%= item.equipe %></td>
+                  <td><%= item.tema %></td>
+                  <td><%= item.jurado %></td>
+                  <td><%= item.nota_1 %></td>
+                  <td><%= item.nota_2 %></td>
+                  <td><%= item.nota_3 %></td>
+                  <td><%= item.nota_4 %></td>
+                  <td><%= item.nota_5 %></td>
+                  <td><%= item.nota_6 %></td>
+                  <td><%= item.nota_7 %></td>
+                  <td><%= item.soma_total %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="pills-noivos" role="tabpanel" aria-labelledby="pills-noivos-tab" tabindex="0">
+          <table class="table table-hover table-striped table-bordered border-primary">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>EQUIPE</th>
+                    <th>TEMA</th>
+                    <th>JURADO</th>
+                    <th>INTERPRETAÇÃO</th>
+                    <th>DESENVOLTURA</th>
+                    <th>ANIMAÇÃO</th>
+                    <th>JOCOSIDADE</th>
+                    <th>INTEGRAÇÃO</th>
+                    <th>FIGURINO</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider text-center fs-5">
+                <% categorias['Noivos'].forEach(function(item) { %>
+                <tr>
+                  <th scope="row"><%= item.equipe %></td>
+                  <td><%= item.tema %></td>
+                  <td><%= item.jurado %></td>
+                  <td><%= item.nota_1 %></td>
+                  <td><%= item.nota_2 %></td>
+                  <td><%= item.nota_3 %></td>
+                  <td><%= item.nota_4 %></td>
+                  <td><%= item.nota_5 %></td>
+                  <td><%= item.nota_6 %></td>
+                  <td><%= item.soma_total %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="pills-casal-destaque" role="tabpanel" aria-labelledby="pills-casal-destaque-tab" tabindex="0">
+          <table class="table table-hover table-striped table-bordered border-primary">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>EQUIPE</th>
+                    <th>TEMA</th>
+                    <th>JURADO</th>
+                    <th>INTERPRETAÇÃO</th>
+                    <th>DESENVOLTURA</th>
+                    <th>ANIMAÇÃO</th>
+                    <th>JOCOSIDADE</th>
+                    <th>INTEGRAÇÃO</th>
+                    <th>FIGURINO</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider text-center fs-5">
+                <% categorias['Casal Destaque'].forEach(function(item) { %>
+                <tr>
+                  <th scope="row"><%= item.equipe %></td>
+                  <td><%= item.tema %></td>
+                  <td><%= item.jurado %></td>
+                  <td><%= item.nota_1 %></td>
+                  <td><%= item.nota_2 %></td>
+                  <td><%= item.nota_3 %></td>
+                  <td><%= item.nota_4 %></td>
+                  <td><%= item.nota_5 %></td>
+                  <td><%= item.nota_6 %></td>
+                  <td><%= item.soma_total %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="pills-rainha" role="tabpanel" aria-labelledby="pills-rainha-tab" tabindex="0">
+          <table class="table table-hover table-striped table-bordered border-primary">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>EQUIPE</th>
+                    <th>TEMA</th>
+                    <th>JURADO</th>
+                    <th>DESENVOLTURA</th>
+                    <th>ANIMAÇÃO</th>
+                    <th>JOCOSIDADE</th>
+                    <th>INTEGRAÇÃO</th>
+                    <th>SEGURANÇA</th>
+                    <th>FIGURINO</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider text-center fs-5">
+                <% categorias['Rainha'].forEach(function(item) { %>
+                <tr>
+                  <th scope="row"><%= item.equipe %></td>
+                  <td><%= item.tema %></td>
+                  <td><%= item.jurado %></td>
+                  <td><%= item.nota_1 %></td>
+                  <td><%= item.nota_2 %></td>
+                  <td><%= item.nota_3 %></td>
+                  <td><%= item.nota_4 %></td>
+                  <td><%= item.nota_5 %></td>
+                  <td><%= item.nota_6 %></td>
+                  <td><%= item.soma_total %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="pills-rei" role="tabpanel" aria-labelledby="pills-rei-tab" tabindex="0">
+          <table class="table table-hover table-striped table-bordered border-primary">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>EQUIPE</th>
+                    <th>TEMA</th>
+                    <th>JURADO</th>
+                    <th>DESENVOLTURA</th>
+                    <th>ANIMAÇÃO</th>
+                    <th>JOCOSIDADE</th>
+                    <th>INTEGRAÇÃO</th>
+                    <th>SEGURANÇA</th>
+                    <th>FIGURINO</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider text-center fs-5">
+                <% categorias['Rei'].forEach(function(item) { %>
+                <tr>
+                  <th scope="row"><%= item.equipe %></td>
+                  <td><%= item.tema %></td>
+                  <td><%= item.jurado %></td>
+                  <td><%= item.nota_1 %></td>
+                  <td><%= item.nota_2 %></td>
+                  <td><%= item.nota_3 %></td>
+                  <td><%= item.nota_4 %></td>
+                  <td><%= item.nota_5 %></td>
+                  <td><%= item.nota_6 %></td>
+                  <td><%= item.soma_total %></td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      
+      <div class="d-grid gap-2">
+        <a class="btn btn-success btn-lg" href="/" role="button">INÍCIO</a>
+        <a class="btn btn-info btn-lg" href="/resultado" role="button">RESULTADOS</a>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Resultado FUNDAMENTAL</a>
+        <a class="btn btn-primary btn-lg" href="/resultadom" role="button">Resultado MÉDIO</a>
+      </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  </body>
+</html>
